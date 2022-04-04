@@ -41,7 +41,7 @@ def check_directories(args):
         os.mkdir(save_path)
         print(f"Created {save_path} directory")
     args.save_dir = save_path
-
+    print(save_path)
     cache_path = os.path.join(args.input_dir, 'cache')
     if not os.path.exists(cache_path):
         os.mkdir(cache_path)

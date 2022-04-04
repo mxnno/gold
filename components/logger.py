@@ -117,7 +117,7 @@ class ExperienceLogger:
             print(step_report + loss_report + metric_report)
 
     def save_best_model(self, model, tokenizer):
-        if self.do_save and self.best_score[self.metric] > 0.1:
+        if self.do_save and self.best_score[self.metric] >= 0.01:
             model_to_save = model.module if hasattr(model, 'module') else model
             if self.version == 'intent':
                 learning_rate = str(self.args.learning_rate)

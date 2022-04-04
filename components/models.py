@@ -99,6 +99,8 @@ class IntentModel(BaseModel):
       target_size = 0
       for category in allowed:
         target_size += len(ontology[category])
+    elif args.task == 'clinc':
+        target_size = len(ontology['finegrain'])
     
     self.temperature = args.temperature
     self.dropout = nn.Dropout(args.drop_rate)
@@ -108,6 +110,7 @@ class IntentModel(BaseModel):
     self.name = 'nlu'
 
   def forward(self, inputs, targets, outcome='loss'):
+
     enc_out = self.encoder(**inputs)
     sequence, pooled = enc_out['last_hidden_state'], enc_out['pooler_output']
 

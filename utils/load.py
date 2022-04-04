@@ -50,14 +50,8 @@ def load_ontology(args):
   return labels
 
 def load_glove(device, size=300):
-  if device.type == 'cpu':
-    root_path = "/Users/derekchen"
-  else:
-    root_path = "/persist"
-  path_name = ".embeddings/glove/"
-  # file_name = "common_crawl_840:300.db"
-  file_name = f"glove.6B.{size}d.txt"
-  full_path = os.path.join(root_path, path_name, file_name)
+
+  full_path = '/content/drive/MyDrive/Masterarbeit/GOLD/glove.6B.300d.txt'
   glove_embeddings = {}
   print(f'Loading {full_path} ...')
   with open(full_path, 'r') as file:

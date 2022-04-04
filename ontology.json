@@ -1,0 +1,143 @@
+{ "flow": { 
+	"Intents": {
+	"Event Management": ["CreateCommitEventWrapper", "FindEventWrapperWithDefaults",
+		"UpdateCommitEventWrapper", "DeleteCommitEventWrapper"],
+	"Calendar": ["FindNumNextEvent", "ForwardEventWrapper", "FindLastEvent",
+		"HolidayYear", "NextHolidayFromToday"],
+	"Attendees": ["AttendeesWithResponse", "AttendeesWithNotResponse", "AttendeeResponseStatus",
+		"AttendeeListHasRecipientConstraint", "EventAttendance", "RecipientAvailability"],
+	"Weather": ["WeatherQueryApi", "WeatherAggregate", "WeatherForEvent", "inFahrenheit",
+			"WillSnow", "WillRain", "NeedsJacket", 
+			"IsSunny", "IsRainy", "IsCold", "IsWindy", "IsCloudy", "IsStormy"],
+	"Places": ["PlaceHasFeature", "PlaceDescribableLocation", "FindPlaceMultiResults",
+			"WhenProperty", "IsFree"],
+	"People": ["PersonFromRecipient", "CurrentUser", "FindManager", "FindTeamOf", "FindReports"],
+	"Fence": ["FenceMultiAction", "FenceAttendee", "FenceOther", "FenceScope", "FenceWeather",
+		"FenceSpecify", "FenceReminder", "FenceGibberish", "FencePeopleQa", "FenceRecurring",
+		"FenceDateTime", "FenceTriviaQa", "FenceConferenceRoom", "FenceNavigation",
+		"FenceConditional", "FenceAggregation", "FencePlaces"],
+	"Pleasantry": ["PleasantryCalendar", "GenericPleasantry", "PleasantryAnythingElseCombined",
+  		"WeatherPleasantry"],
+	"Other": ["Execute", "Here", "Today", "DateAtTimeWithDefaults", "NextTime", "DoNotConfirm"]
+	},
+
+	"Captures": {
+		"FenceMultiAction" : [
+			"I can only do one action at a time. If you separate your requests, I can help you."],
+		"FenceAttendee" : [
+			"I didn't find anyone named"],
+		"FenceOther" : [
+			"Sorry, I can't handle that yet."],
+		"FenceScope" : [
+			"Sorry, I can only help with your calendar."],
+		"FenceWeather": [ 
+			"Sorry, I can't answer that with the information I have access to."],
+		"FenceSpecify" : [ 
+			"I'm sorry, you haven't shared your current location with me. Where are you?"],
+		"FenceReminder": [ 
+			"Sorry, I can't do reminders.", "Sorry, I'm not able to handle alerts yet."],
+		"FenceGibberish" : [ 
+ 			"I didn't understand that. Could you say it in a different way?"],
+		"FencePeopleQa": [ 
+			"I can only look up names in your address book."],
+		"FenceRecurring": [
+			"I can't schedule recurring events right now."],
+		"FenceDateTime": [
+			"Is this good? <or> Does one of these work?"],
+		"FenceTriviaQa": [
+			"I don't know the answer to that."],
+		"FenceConferenceRoom": [
+			"I can't handle multiple conference rooms or requests for specific rooms."],
+		"FenceNavigation": [
+			"I can't answer questions about transit."],
+		"FenceConditional": [
+			"I don't support that capability yet."],
+		"FenceAggregation": [
+			"Sorry, I can't do those calculations on your calendar."],
+		"FencePlaces": [
+			"I haven’t been trained", "I'm unable to find"]
+	}
+}, "star": {
+	"Event": ["Agent", "Action", "ActionLabel", "ActionLabelOptions",
+				"Text", "PrimaryItem", "SecondaryItem"],
+	"Scenario": ["Domains", "UserTask", "WizardTask", "WizardCapabilities", "Happy", "MultiTask"],
+  	"Agents": ["UserGuide", "User", "Wizard", "KnowledgeBase"],
+	"Actions": ["request_suggestions", "select_primary", "select_secondary", "return_item", 
+		"query", "utter", "complete", "instruct", "select_task", "pick_suggestion"],
+	"Domains": ["apartment", "bank", "doctor", "hotel", "meeting", "party", "plane",
+				"restaurant", "ride", "spaceship", "trip", "trivia", "weather"],
+	"Tasks": ["apartment_schedule", "apartment_search", 
+				"bank_balance", "bank_fraud_report", 
+				"doctor_followup", "doctor_schedule",
+				"hotel_book", "hotel_search", "hotel_service_request",
+				"meeting_schedule",
+				"party_plan", "party_rsvp",
+				"plane_book", "plane_search",
+				"restaurant_book", "restaurant_search",
+				"ride_book", "ride_change", "ride_status",
+				"spaceship_access_codes", "spaceship_life_support",
+				"trip_directions",
+				"trivia", "weather"],
+	"Intents": {
+		"regular": ["apartment_ask_apartment_name", "apartment_ask_application_fee_paid", "apartment_ask_balcony",
+			"apartment_ask_custom_message", "apartment_ask_day", "apartment_ask_elevator", "apartment_ask_end_time",
+			"apartment_ask_floor", "apartment_ask_nearby_pois", "apartment_ask_num_bedrooms", "apartment_ask_price",
+			"apartment_ask_search_more", "apartment_ask_start_time", "apartment_inform_booking_successful",
+			"apartment_inform_nothing_found", "apartment_inform_search_criteria", "apartment_inform_search_result",
+			"apartment_inform_viewing_available", "apartment_inform_viewing_unavailable", 
+		"bank_ask_account_number", "bank_ask_childhood_pets_name", "bank_ask_dob", "bank_ask_fraud_details", 
+			"bank_ask_mothers_maiden_name", "bank_ask_pin", "bank_inform_balance", 
+			"bank_inform_cannot_authenticate", "bank_inform_fraud_report_submitted", "bank_inform_nothing_found",
+		"doctor_ask_day", "doctor_ask_doctor_name", "doctor_ask_start_time", "doctor_ask_symptoms", 
+			"doctor_inform_booking_available", "doctor_inform_booking_successful", "doctor_inform_booking_unavailable",
+			"doctor_inform_doctors_instructions", "doctor_inform_nothing_found",
+		"hotel_ask_confirm_booking", "hotel_ask_customer_request", "hotel_ask_date_from", "hotel_ask_date_to",
+			"hotel_ask_hotel", "hotel_ask_location", "hotel_ask_name", "hotel_ask_price", "hotel_ask_rating",
+			"hotel_ask_room_number", "hotel_ask_search_more", "hotel_ask_service_request", "hotel_ask_time",
+			"hotel_inform_location", "hotel_inform_name", "hotel_inform_nothing_found", "hotel_inform_price",
+			"hotel_inform_rating", "hotel_inform_search_criteria", "hotel_inform_service_request_failed",
+			"hotel_inform_service_request_successful", "hotel_provide_search_result",
+			"hotel_reservation_failed", "hotel_reservation_succeeded", "hotel_unavailable",
+		"meeting_ask_day", "meeting_ask_end_time", "meeting_ask_guest_name", "meeting_ask_reason",
+			"meeting_ask_start_time", "meeting_inform_confirmed", "meeting_inform_nothing_found",
+			"meeting_inform_unavailable_ask_different_time",
+		"party_ask_arrival_time", "party_ask_confirm_booking", "party_ask_day", "party_ask_dietary_restrictions",
+			"party_ask_drinks", "party_ask_end_time", "party_ask_food", "party_ask_host",
+			"party_ask_number_of_guests", "party_ask_parking_needed", "party_ask_starting_time",
+			"party_ask_venue", "party_booking_failed", "party_booking_successful", "party_confirm_rsvp",
+			"party_inform_food_drink_criteria", "party_no_venue_available", "party_venue_not_available",
+		"plane_ask_arrival_city", "plane_ask_date", "plane_ask_flight_id", "plane_ask_more_questions",
+			"plane_flight_available", "plane_flight_unavailable", "plane_inform_flight_details",
+			"plane_inform_nothing_found", "plane_request_optional", "plane_reservation_failed",
+			"plane_reservation_succeeded",
+		"restaurant_ask_confirm_booking", "restaurant_ask_continue_searching", "restaurant_ask_delivery",
+			"restaurant_ask_food_type", "restaurant_ask_location", "restaurant_ask_rating",
+			"restaurant_ask_restaurant", "restaurant_ask_size", "restaurant_ask_takes_reservations",
+			"restaurant_ask_time", "restaurant_bye", "restaurant_inform_booking_failed",
+			"restaurant_inform_booking_successful", "restaurant_inform_nothing_found",
+			"restaurant_inform_search_criteria", "restaurant_inform_unavailable",
+		"ride_ask_booking_number", "ride_ask_change", "ride_ask_confirm_booking", "ride_ask_departure",
+			"ride_ask_destination", "ride_bye", "ride_confirm_booking", "ride_inform_changes_failed",
+			"ride_inform_changes_successful", "ride_inform_nothing_found", "ride_inform_search_criteria",
+			"ride_provide_driver_details",
+		"spaceship_ask_code", "spaceship_ask_code_type", "spaceship_ask_colour_second_cable",
+			"spaceship_ask_colour_top_cable", "spaceship_ask_lock_manufacturer", "spaceship_ask_rank",
+			"spaceship_bye", "spaceship_inform_nothing_found", "spaceship_inform_outcome",
+		"trip_ask_arrival_location", "trip_ask_departure_location", "trip_ask_departure_time",
+			"trip_ask_travel_mode", "trip_inform_detailed_step", "trip_inform_last_step_and_done",
+			"trip_inform_nothing_found", "trip_inform_simple_step_ask_proceed", "trip_instructions_done",
+		"weather_ask_day", "weather_ask_location", "weather_inform_forecast", "weather_inform_nothing_found"],
+		"ambiguous": ["custom", "out_of_scope", "ambiguous"]
+	}
+}, "rostd": {
+	"Intents": 
+		{"coarse": ["weather", "alarm", "reminder"], 
+		"finegrain": ["cancel_alarm", "time_left_on_alarm", "checkSunset", "find_weather",
+				"checkSunrise", "show_reminders", "show_alarms", "modify_alarm", "snooze_alarm",
+		 		"cancel_reminder", "set_reminder", "set_alarm"]
+    	}
+	}, "clinc": {
+	"Intents": 
+		{"coarse": ["travel"],
+    "finegrain": ["exchange_rate", "car_rental", "vaccines", "international_visa", "translate", "carry_on", "book_flight", "timezone", "flight_status", "lost_luggage", "book_hotel", "plug_type", "travel_alert", "travel_notification", "travel_suggestion"]}
+	}}

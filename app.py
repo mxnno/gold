@@ -152,7 +152,8 @@ class MatchMaker(object):
     self.stats = {'skip': 0, 'filter': 0, 'in_scope': 0, 'out_scope': 0, 'round': 0, 'keep': 0}
     self.initialize_data(args, source_data, target_data)
     self.model = load_best_model(args, model_class, device)
-    self.methods = ['odin', 'mahalanobis', 'dropout']
+    #self.methods = ['odin', 'mahalanobis', 'dropout']
+    self.methods = ['odin', 'dropout']
 
   def initialize_data(self, args, source_data, target_data):
     self.build_storage(*sample_oos(target_data))
@@ -171,7 +172,9 @@ class MatchMaker(object):
                   'rostd': {'maxprob': 0.99, 'odin': 0.9, 'bert_embed': 3.6, 'dropout': 0.7,
                             'entropy': 1.2,  'gradient': 3.6, 'mahalanobis': 3.6}, 
                   'flow': {'maxprob': 0.99, 'odin': 0.84, 'bert_embed': 7.7, 'dropout': 0.96,
-                            'entropy': 0.5,  'gradient': 7.6, 'mahalanobis': 7.4}  }
+                            'entropy': 0.5,  'gradient': 7.6, 'mahalanobis': 7.4},
+                  'clinc': {'maxprob': 0.99, 'odin': 0.9, 'bert_embed': 3.6, 'dropout': 0.7,
+                            'entropy': 1.2,  'gradient': 3.6, 'mahalanobis': 3.6}}
     self.thresholds = thresholds[self.task]
 
     self.target_samples = {}

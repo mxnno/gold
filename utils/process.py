@@ -22,7 +22,9 @@ def get_dataloader(args, dataset, split='train'):
 
 def load_mixture(args):
   results = {}
-  sources = ['QQP', 'PC', 'OSQ']
+  #sources = ['QQP', 'PC', 'OSQ']
+  sources = ['QQP', 'PC']
+  #hier evtl noch die anderen sources mit dazu nehmen (MQA, TM)
 
   for src in sources:
     augment_path = os.path.join(args.input_dir, 'augments', f'{args.task}_{src}.pkl')
@@ -92,5 +94,7 @@ def process_data(args, features, tokenizer, ontology):
         datasets[split] = IntentDataset(ins_data, tokenizer, ontology, split)
       else:
         datasets[split] = DirectDataset(feat, tokenizer, ontology, split)
+
+
 
   return datasets

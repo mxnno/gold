@@ -31,8 +31,10 @@ def sample_oos(target_data):
       in_scope_count += 1
     else:
       oos_examples.append(example)
-
-  sample_size = int(round(in_scope_count / 100))
+  print(in_scope_count)
+  sample_size = int(round(in_scope_count / 10))
+  print(sample_size)
+  print(len(oos_examples))
   sample_ids = np.random.choice(len(oos_examples), size=sample_size, replace=False)
   print(f"Sampled {sample_size} OOS targets")
   return oos_examples, sample_ids
@@ -397,6 +399,16 @@ def augment_features(args, source_data, target_data, augment_path, tokenizer, on
 
   features = merge_features(target_data, maker.augment_data)
   pkl.dump(features, open(augment_path, 'wb')) 
+  print(features)
+
+  train = features['train']
+  print(len(train))
+  print(len(features['test']))
+  print(len(features['dev']))
+  for baseInstance in train:
+    print("---------------------")
+    print(baseInstance.intent_label)
+    print(baseInstance.context)
   return features
 
 if __name__ == "__main__":

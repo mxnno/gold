@@ -10,7 +10,7 @@ def solicit_params():
     parser.add_argument("--output-dir", default='results', type=str,
                 help="Output directory where the model predictions and checkpoints are written.")
     parser.add_argument("--task", default='star', type=str,
-                choices=['flow', 'star', 'rostd'])
+                choices=['flow', 'star', 'rostd', 'clinc'])
     parser.add_argument("--model", default='bert', type=str,
                 help="The model architecture to be trained or fine-tuned.")
     parser.add_argument("--seed", default=42, type=int)

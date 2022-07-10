@@ -6,6 +6,11 @@ import re
 import json
 import numpy as np
 import time as tm
+import csv
+
+
+from datasets import Dataset
+
 
 from copy import deepcopy
 from numpy.linalg import norm
@@ -35,7 +40,7 @@ def sample_oos(target_data):
   sample_size = int(round(in_scope_count / 10))
   print(sample_size)
   print(len(oos_examples))
-  sample_ids = np.random.choice(len(oos_examples), size=sample_size, replace=False)
+  sample_ids = np.random.choice(len(oos_examples), size=len(oos_examples), replace=False)
   print(f"Sampled {sample_size} OOS targets")
   return oos_examples, sample_ids
 
@@ -402,13 +407,30 @@ def augment_features(args, source_data, target_data, augment_path, tokenizer, on
   print(features)
 
   train = features['train']
-  print(len(train))
-  print(len(features['test']))
-  print(len(features['dev']))
+  new_texts = []
+  new_labels = []
+
+  counter = 0
+  write_to_csv = []
+
   for baseInstance in train:
-    print("---------------------")
-    print(baseInstance.intent_label)
-    print(baseInstance.context)
+
+    if counter == 0:
+      write_to_csv.append([""] + ["text"] + ["intent"])
+    else:
+      write_to_csv.append([counter] + [baseInstance.context] + [0])
+      
+    counter += 1
+
+
+  with open("/content/drive/MyDrive/Masterarbeit/OOD-Methoden/GOLD/ood_data.csv", 'w', encoding='utf-8') as csvw:
+      writer = csv.writer(csvw)
+      for row in write_to_csv:
+        writer.writerow(row)
+      csvw.close()
+
+  # ood_dataset = Dataset.from_dict({'text': new_texts, 'intent': new_labels})
+  # ood_dataset.to_csv("/content/drive/MyDrive/Masterarbeit/OOD_Methoden/GOLD/ood_data.csv")
   return features
 
 if __name__ == "__main__":

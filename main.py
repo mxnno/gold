@@ -90,13 +90,13 @@ if __name__ == "__main__":
 
   
 
-  # if args.version == 'augment':
-  #   model = BaseModel(args, ontology, tokenizer).to(device)
-  # elif args.version == 'baseline':
-  #   model = IntentModel(args, ontology, tokenizer).to(device)
-  # exp_logger = ExperienceLogger(args, model.save_dir)
+  if args.version == 'augment':
+    model = BaseModel(args, ontology, tokenizer).to(device)
+  elif args.version == 'baseline':
+    model = IntentModel(args, ontology, tokenizer).to(device)
+  exp_logger = ExperienceLogger(args, model.save_dir)
   
-  # if args.do_train:
-  #   best_score = run_train(args, model, datasets, tokenizer, exp_logger)
-  # if args.do_eval:
-  #   run_eval(args, model, datasets, tokenizer, exp_logger, split='test')
+  if args.do_train:
+    best_score = run_train(args, model, datasets, tokenizer, exp_logger)
+  if args.do_eval:
+    run_eval(args, model, datasets, tokenizer, exp_logger, split='test')

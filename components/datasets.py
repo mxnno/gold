@@ -7,7 +7,10 @@ from torch.utils.data import Dataset
 class BaseInstance(object):
   def __init__(self, embed_data, example):
     self.embedding = embed_data['input_ids']
-    self.segments = embed_data['token_type_ids']
+    if "token_type_ids" in embed_data:
+        self.segments = embed_data['token_type_ids']
+    else:
+        self.segments = [0] * len(embed_data['input_ids'])
     self.input_mask = embed_data['attention_mask']
 
     self.guid = example['guid']

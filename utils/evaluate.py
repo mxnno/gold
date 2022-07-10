@@ -32,6 +32,7 @@ def qualify(args, preds, targets, contexts, texts, tokenizer):
 
 def quantify(args, predictions, targets, exp_logger, split):
   if exp_logger.version == 'intent':
+
     preds = torch.argmax(predictions, axis=1)
     results = accuracy_eval(args, preds, targets, exp_logger)
   elif args.debug or split == 'train':
@@ -266,8 +267,11 @@ def make_covariance_matrix(args, vectors, clusters):
     for vector in vectors:
       diff = (vector - cluster).unsqueeze(1)  # hidden_dim, 1
       covar += torch.matmul(diff, diff.T)           # hidden_dim, hidden_dim
-  covar /= len(vectors)                       # divide by a scalar throughout
-  inv_cov_matrix = np.linalg.inv(covar)
+  covar /= len(vectors)     
+  print(covar)                  # divide by a scalar throughout
+  print(np.linalg.det(covar))
+  print(np.linalg.pinv(covar))
+  inv_cov_matrix = np.linalg.pinv(covar)
   return torch.tensor(inv_cov_matrix)
 
 def mahala_dist(x, mu, VI):
@@ -279,6 +283,8 @@ def mahala_dist(x, mu, VI):
 
 def process_diff(args, clusters, vectors, targets, exp_logger):
   ''' figure out how far from clusters '''
+  print(vectors)
+  print(clusters)
   inv_cov_matrix = make_covariance_matrix(args, vectors, clusters)
   uncertainty_preds = []
   
